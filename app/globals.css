@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0b0b0b;
+  --bg-soft: #141414;
+  --accent: #c7a27c;
+  --accent-light: #e9cca5;
+  --accent-deep: #8f6b45;
+  --ink: #f4f1ec;
+  --muted: #8c8881;
+  --hairline: rgba(255, 255, 255, 0.08);
+  --glass: rgba(16, 16, 16, 0.55);
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+::selection {
+  background: var(--accent);
+  color: #0b0b0b;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0b0b;
+}
+::-webkit-scrollbar-thumb {
+  background: #26221c;
+  border-radius: 10px;
+  border: 2px solid #0b0b0b;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-deep);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 400;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ---------- Surfaces ---------- */
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--hairline);
+}
+
+.glass-soft {
+  background: rgba(20, 20, 20, 0.4);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    140deg,
+    rgba(199, 162, 124, 0.65),
+    rgba(199, 162, 124, 0.08) 38%,
+    rgba(255, 255, 255, 0.07) 62%,
+    rgba(199, 162, 124, 0.4)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.text-rose {
+  background: linear-gradient(100deg, #e9cca5 0%, #c7a27c 38%, #9c7a54 62%, #e9cca5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.shadow-luxe {
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.75), 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+}
+
+.shadow-glow {
+  box-shadow: 0 0 0 1px rgba(199, 162, 124, 0.15), 0 20px 60px -15px rgba(199, 162, 124, 0.18);
+}
+
+/* ---------- Backgrounds ---------- */
+
+.blueprint-grid {
+  background-image: linear-gradient(rgba(199, 162, 124, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(199, 162, 124, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.blueprint-grid-lg {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 96px 96px;
+}
+
+.noise {
+  position: relative;
+}
+.noise::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.spotlight-mask {
+  -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 42%, #000 55%, transparent 78%);
+  mask-image: radial-gradient(ellipse 60% 55% at 50% 42%, #000 55%, transparent 78%);
+}
+
+/* ---------- Typography helpers ---------- */
+
+.label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  line-height: 1.02;
+}
+
+.st-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.st-char {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* ---------- Links ---------- */
+
+.under-link {
+  position: relative;
+}
+.under-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.under-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ---------- Marquee ---------- */
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+/* ---------- Forms ---------- */
+
+.field {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  padding: 0.95rem 1.1rem;
+  font-size: 0.9rem;
+  color: var(--ink);
+  width: 100%;
+  outline: none;
+  transition: border-color 0.4s, background 0.4s, box-shadow 0.4s;
+}
+.field::placeholder {
+  color: rgba(255, 255, 255, 0.28);
+}
+.field:focus {
+  border-color: rgba(199, 162, 124, 0.55);
+  background: rgba(199, 162, 124, 0.03);
+  box-shadow: 0 0 0 4px rgba(199, 162, 124, 0.06);
+}
+
+/* ---------- Misc ---------- */
+
+.vignette {
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
